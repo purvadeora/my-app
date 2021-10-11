@@ -5,36 +5,31 @@ import TodoLists from './TodoLists';
 
 const App = () => {
   //hooks
-  const [inputlist, setInputList] = useState("apples");
-  const [items, setItems] = useState([]);
+  const [newItem, setNewItem] = useState("apples");
+  const [items, setItems] = useState([{title:"Apple" , checked: true}]);
 
   const itemEvent = (event) => {
-    setInputList(event.target.value);
+    setNewItem(event.target.value);
 
   };
-  const listItems = () => {
+  const addNewListItem = () => {
     setItems((oldItems) => {
-      return [...oldItems, inputlist];
+      return [...oldItems,{title:newItem , checked: false} ];
 
     });
 
-    setInputList("");
+    setNewItem("");
 
   };
 
-  // const markTodo = (id) =>{
-  //   //console.log("marked");
-  //  return
-  //    if(id==true)
-  //  id.toggle('checked')
-
-  // };
+  
 
   const handleToggle = (id) => {
-    let mapped = TodoLists.map(task => {
+    console.log("checked");
+    let mapped = TodoLists.map(task =>{
       return task.id == id ? { ...task, complete: !task.complete } : { ...task };
     });
-    setToDoLists(mapped);
+   // setToDoLists(mapped);
   }
 
 
@@ -57,13 +52,13 @@ const App = () => {
 
         <h1> My To DO List </h1>
 
-        <input id="input" text="text" value={inputlist} placeholder="Add item to the list" onChange={itemEvent} />
-        <button onClick={listItems}> + </button>
+        <input id="input" text="text" value={newItem} placeholder="Add item to the list" onChange={itemEvent} />
+        <button onClick={addNewListItem}> + </button>
 
         <ol>
           {items.map((itemval, index) => {
             console.log("item");
-            return <TodoLists key={index} id={index} text={itemval}
+            return <TodoLists key={index} id={index} text={itemval.title} checked={itemval.checked}
               onSelect={deleteItems} onCheck={handleToggle} />;
 
 

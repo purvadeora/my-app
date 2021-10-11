@@ -1,21 +1,26 @@
 import React from 'react';
 
 
+
+
 const TodoLists = (props) => {
-  // const deleteItems = () =>{
-  //   console.log("deleted");
-  // };
 
   return (
 
     <>
-      <div className="todo_style">
+       <div className="todo_style" >
+
       
-       <li onCheck={() => {props.onCheck(props.id)}}> {props.text} </li>
-       <span className="delete" id="checked"
-       
-        onClick={() => {props.onSelect(props.id); }} >x</span>
- 
+       { props.checked == false ?
+          (<li  onCheck={() => { props.onCheck(props.id); }}> {props.text} </li>) 
+        :
+          (<li  className="checkedItem" onCheck={() => { props.onCheck(props.id); }}> {props.text} </li>) }
+
+      
+        <span className="delete"
+
+          onClick={() => { props.onSelect(props.id); }} >x</span>
+
 
       </div>
 
@@ -27,13 +32,6 @@ const TodoLists = (props) => {
 export default TodoLists;
 
 
-const ToDo = ({todo}) => {
-  return (
-      <div className={todo.complete ? "strike" : ""}>
-          {todo.task}
-      </div>
-  );
-};
 //<i class="fa fa-trash-o" aria-hidden="true"></i>
 // import logo from './logo.svg';
 // import './App.css';
@@ -52,7 +50,7 @@ const ToDo = ({todo}) => {
 //   const listItems = () => {
 //     setItems((oldItems) => {
 //       return [...oldItems, inputlist];
-      
+
 //     });
 
 //     setInputList("");
@@ -87,8 +85,8 @@ const ToDo = ({todo}) => {
 //             console.log("item");
 //             return <TodoLists key={index} id={index} text={itemval}
 //               onSelect={deleteItems} />;
-             
-              
+
+
 
 
 //           })}
@@ -111,4 +109,3 @@ const ToDo = ({todo}) => {
 // export default App;
 
 
- 

@@ -46,7 +46,7 @@ background: transparent;
   justify-content: left;
   align-items: center;
 }
-.todo_style .fa-times {
+.todo_style x {
   width: 20px;
   height: 20px;
   display:flex;
@@ -60,7 +60,11 @@ background: transparent;
 .delete{
   margin-left: 50%;
 }
-ul li.checked {
+ol li.checked{
   background: #888;
   color: #fff;
-  text-decoration: line-through;}
+  text-decoration: line-through;
+}
+.checkedItem{
+  text-decoration: line-through;
+}
