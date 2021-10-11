@@ -15,7 +15,7 @@ const App = () => {
   const listItems = () => {
     setItems((oldItems) => {
       return [...oldItems, inputlist];
-      
+
     });
 
     setInputList("");
@@ -27,12 +27,12 @@ const App = () => {
   //  return
   //    if(id==true)
   //  id.toggle('checked')
-   
+
   // };
 
   const handleToggle = (id) => {
     let mapped = TodoLists.map(task => {
-      return task.id == id ? { ...task, complete: !task.complete } : { ...task};
+      return task.id == id ? { ...task, complete: !task.complete } : { ...task };
     });
     setToDoLists(mapped);
   }
@@ -40,7 +40,7 @@ const App = () => {
 
   const deleteItems = (id) => {
     console.log("deleted");
-     setItems((oldItems) => {
+    setItems((oldItems) => {
       return oldItems.filter((arrElem, index) => {
         return index !== id;
       });
@@ -65,8 +65,8 @@ const App = () => {
             console.log("item");
             return <TodoLists key={index} id={index} text={itemval}
               onSelect={deleteItems} onCheck={handleToggle} />;
-             
-              
+
+
 
 
           })}
@@ -87,6 +87,3 @@ const App = () => {
 }
 
 export default App;
-
-
-
