@@ -6,7 +6,8 @@ import TodoLists from './TodoLists';
 const App = () => {
   //hooks
   const [newItem, setNewItem] = useState("apples");
-  const [items, setItems] = useState([{title:"Apple" , checked: true}]);
+  const [items, setItems] = useState([{ title: "Apple", checked: true  }]);
+  
 
   const itemEvent = (event) => {
     setNewItem(event.target.value);
@@ -14,26 +15,25 @@ const App = () => {
   };
   const addNewListItem = () => {
     setItems((oldItems) => {
-      return [...oldItems,{title:newItem , checked: false} ];
+      return [...oldItems, { title: newItem, checked: false }];
 
     });
 
     setNewItem("");
 
   };
-
-  
-
   const handleToggle = (id) => {
     console.log("checked");
-    let mapped = TodoLists.map(task =>{
-      return task.id == id ? { ...task, complete: !task.complete } : { ...task };
+    console.log(id);
+    let mapped = items.map((task , index) => {
+      return index == id ? { ...task, checked: !task.checked } : { ...task };
     });
-   // setToDoLists(mapped);
+    setItems(mapped);
   }
 
-
   const deleteItems = (id) => {
+
+console.log({id});
     console.log("deleted");
     setItems((oldItems) => {
       return oldItems.filter((arrElem, index) => {
@@ -57,7 +57,7 @@ const App = () => {
 
         <ol>
           {items.map((itemval, index) => {
-            console.log("item");
+            console.log("item", itemval);
             return <TodoLists key={index} id={index} text={itemval.title} checked={itemval.checked}
               onSelect={deleteItems} onCheck={handleToggle} />;
 
