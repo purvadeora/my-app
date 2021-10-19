@@ -1,12 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import TodoLists from './TodoLists';
+
+
+const getlocalItems = () => {
+  let item = window.localStorage.getItem("items");
+  if (item) {
+      return JSON.parse(window.localStorage.getItem('items'));
+
+  } else {
+      return [];
+  }
+}
 
 const App = () => {
   //hooks
   const [newItem, setNewItem] = useState("apples");
-  const [items, setItems] = useState([{ title: "Apple", checked: true  }]);
+  const [items, setItems] = useState( () => getlocalItems());
+
+  
+  useEffect(() => window.localStorage.setItem("items", JSON.stringify(items)), [items]);
   
 
   const itemEvent = (event) => {
@@ -82,3 +96,4 @@ console.log({id});
 }
 
 export default App;
+
