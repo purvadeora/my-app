@@ -1,3 +1,4 @@
+
 import logo from './logo.svg';
 import './App.css';
 import React, { useState ,useEffect } from 'react';
@@ -29,7 +30,7 @@ const App = () => {
   };
   const addNewListItem = () => {
     setItems((oldItems) => {
-      return [...oldItems, { title: newItem, checked: false }];
+      return [ { title: newItem, checked: false } ,...oldItems ];
 
     });
 
@@ -57,7 +58,31 @@ console.log({id});
     });
 
   };
-
+  const sortByAscending =() => {
+    console.log("sortedlist");
+    
+    let sortedAsceding = items.sort((a,b) => {
+      // let x = a.type.toLowerCase();
+      // let y = b.type.toLowerCase();
+       if(a.title < b.title){
+        console.log("return -1") ;
+        
+        return -1; }
+        console.log(a.title ,b.title);
+      if(a.title > b.title){
+        console.log("return 1") ;
+        
+        return 1;}
+      return 0;
+      });
+   
+     console.log({sortedAsceding ,items});
+     setItems(sortedAsceding);
+    
+  };
+  
+  
+  console.log({items});
 
   return (<>
 
@@ -68,11 +93,13 @@ console.log({id});
 
         <input id="input" text="text" value={newItem} placeholder="Add item to the list" onChange={itemEvent} />
         <button onClick={addNewListItem}> + </button>
+        <button onClick={sortByAscending}>Sort</button>
 
         <ol>
+
           {items.map((itemval, index) => {
             console.log("item", itemval);
-            return <TodoLists key={index} id={index} text={itemval.title} checked={itemval.checked}
+            return <TodoLists text={itemval.title} key={index} id={index}  checked={itemval.checked}
               onSelect={deleteItems} onCheck={handleToggle} />;
 
 
